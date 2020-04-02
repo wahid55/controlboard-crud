@@ -40,12 +40,21 @@ class AdminProgramsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'          => 'required|string|max:255|unique:programs',
+            'name' => 'required|string|max:255|unique:programs',
+            'department' => 'nullable'
         ]);
+
 
         $program = new Program();
         $program->name = $request->name;
-        $program->save();
+
+        if($request->get('department') == '0') {
+            $program->save();
+        } else {
+            $department = Department::findOrFail($request->department);
+            $department->programs()->save($program);
+        }
+
 
         return redirect()->route('programs.index')->with('status', 'success')->with('message', 'Program has created successfully');
     }
@@ -93,10 +102,18 @@ class AdminProgramsController extends Controller
                 'max:255',
                 Rule::unique('programs')->ignore($program->id)
             ],
+            'department' => 'nullable'
         ]);
 
         $program->name = $request->name;
-        $program->update();
+
+
+        if($request->get('department') == '0') {
+            $program->update();
+        } else {
+            $department = Department::findOrFail($request->department);
+            $department->programs()->save($program);
+        }
 
         return redirect()->route('programs.index')->with('status', 'success')->with('message', 'Program has updated successfully');
     }

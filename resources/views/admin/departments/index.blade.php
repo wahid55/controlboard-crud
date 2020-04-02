@@ -8,6 +8,7 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th>Programs</th>
             <th>Established</th>
             <th>Action</th>
         </tr>
@@ -16,6 +17,7 @@
         @forelse($departments as $department )
         <tr>
             <td>{{ $department->name }}</td>
+            <td>{{ count($department->programs) }}</td>
             <td>{{ $department->established_at }}</td>
             <td>
                 <a href="{{ route('departments.edit', $department ) }}">Edit</a> |

@@ -16,7 +16,7 @@
         @forelse($programs as $program)
         <tr>
             <td>{{ $program->name }}</td>
-            <td>-</td>
+            <td>{{ $program->department->name ?? '' }}</td>
             <td>
                 <a href="{{ route('programs.edit', $program ) }}">Edit</a> |
                 <a href="{{ route('programs.destroy', $program ) }}" class="delete">Delete</a>

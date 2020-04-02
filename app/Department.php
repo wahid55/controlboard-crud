@@ -8,6 +8,10 @@ class Department extends Model
 {
     protected $fillable = ['name', 'established_at'];
 
+    public function programs() {
+        return $this->hasMany('App\Program');
+    }
+
     public function courses() {
         return $this->belongsToMany('App\Course')->withTimestamps();
     }
