@@ -25,4 +25,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin', 'AdminController@index')->name('home');
     Route::resource('/admin/roles', 'AdminRolesController');
     Route::resource('/admin/users', 'AdminUsersController');
+    Route::resource('/admin/courses', 'AdminCoursesController');
 });
