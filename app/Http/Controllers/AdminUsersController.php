@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -74,7 +75,8 @@ class AdminUsersController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -98,6 +100,7 @@ class AdminUsersController extends Controller
                 Rule::unique('users')->ignore($user->id)
             ],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+            'roles' => ['required'],
         ]);
 
         if($request->has('name')) {
@@ -110,6 +113,12 @@ class AdminUsersController extends Controller
 
         if($request->has('password')) {
             $user->password = Hash::make($request->password);
+        }
+
+        if(in_array('0', $request->roles)) {
+            $user->roles()->detach();
+        } else {
+            $user->roles()->sync($request->roles);
         }
 
         $user->update();
