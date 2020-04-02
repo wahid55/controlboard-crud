@@ -27,5 +27,14 @@
         <label>Confirm Password</label>
         <input type="password" name="password_confirmation">
     </p>
+    <p>
+        <label>Roles</label>
+        <select name="roles[]" multiple>
+            @foreach($roles as $role)
+                <option value="{{ $role->id }}">{{ $role->name }}</option>
+            @endforeach
+            <option value="0">None</option>
+        </select>
+    </p>
     <button type="submit">Create</button>
 </form>
