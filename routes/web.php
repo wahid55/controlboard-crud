@@ -26,4 +26,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/admin/roles', 'AdminRolesController');
     Route::resource('/admin/users', 'AdminUsersController');
     Route::resource('/admin/courses', 'AdminCoursesController');
+    Route::resource('/admin/departments', 'AdminDepartmentsController');
 });
