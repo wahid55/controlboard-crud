@@ -62,7 +62,7 @@ class AdminDepartmentsController extends Controller
     public function show($id)
     {
         $department = Department::findOrFail($id);
-        return redirect()->route('departments.show')->with(compact('department'));
+        return view('admin.departments.show', compact('department'));
     }
 
     /**
