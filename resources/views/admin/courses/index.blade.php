@@ -10,6 +10,7 @@
             <th>Code</th>
             <th>Title</th>
             <th>Credit</th>
+            <th>Departments</th>
         </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
             <td>{{ $course->code }}</td>
             <td>{{ $course->title }}</td>
             <td>{{ $course->credit }}</td>
+            <td>{{ count($course->departments) }}</td>
             <td>
                 <a href="{{ route('courses.edit', $course) }}">Edit</a> |
                 <a href="{{ route('courses.destroy', $course) }}" class="delete">Delete</a>
@@ -25,7 +27,7 @@
         </tr>
         @empty
             <tr>
-                <td colspan="3">No Courses</td>
+                <td colspan="4">No Courses</td>
             </tr>
         @endforelse
     </tbody>

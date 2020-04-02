@@ -25,5 +25,14 @@
         <label>Credit</label>
         <input type="text" name="credit" value="{{ $course->credit }}">
     </p>
+    <p>
+        <label>Departments</label>
+        <select name="departments[]" multiple>
+            @foreach($departments as $department)
+                <option value="{{ $department->id }}">{{ $department->name }}</option>
+            @endforeach
+            <option value="0">None</option>
+        </select>
+    </p>
     <button type="submit">Update</button>
 </form>

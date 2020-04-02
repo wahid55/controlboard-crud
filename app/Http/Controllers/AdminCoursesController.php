@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use App\Department;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -26,7 +27,8 @@ class AdminCoursesController extends Controller
      */
     public function create()
     {
-        return view('admin.courses.create');
+        $departments = Department::orderBy('name', 'ASC')->get();
+        return view('admin.courses.create', compact('departments'));
     }
 
     /**
@@ -41,6 +43,7 @@ class AdminCoursesController extends Controller
             'code'      => 'required|string|max:15|unique:courses',
             'title'     => 'required|string|max:255',
             'credit'    => 'required|numeric|between:0,4.00',
+            'departments' => 'required',
         ]);
 
         $course = new Course();
@@ -48,6 +51,7 @@ class AdminCoursesController extends Controller
         $course->title = $request->title;
         $course->credit = $request->credit;
         $course->save();
+        $course->departments()->sync($request->departments);
 
         return redirect()->route('courses.index')->with('status', 'success')->with('message', 'Course has created successfully');
     }
@@ -72,7 +76,8 @@ class AdminCoursesController extends Controller
     public function edit($id)
     {
         $course = Course::findOrFail($id);
-        return view('admin.courses.edit', compact('course'));
+        $departments = Department::orderBy('name', 'ASC')->get();
+        return view('admin.courses.edit', compact('course', 'departments'));
     }
 
     /**
@@ -95,11 +100,19 @@ class AdminCoursesController extends Controller
             ],
             'title'     => 'nullable|string|max:255',
             'credit'    => 'nullable|numeric|between:0,4.00',
+            'departments' => 'required'
         ]);
 
         $course->code   = $request->code;
         $course->title  = $request->title;
         $course->credit = $request->credit;
+
+        if(in_array('0', $request->departments)) {
+            $course->departments()->detach();
+        } else {
+            $course->departments()->sync($request->departments);
+        }
+
         $course->update();
 
         return redirect()->route('courses.index')->with('status', 'success')->with('message', 'Course has updated successfully');
