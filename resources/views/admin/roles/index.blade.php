@@ -17,11 +17,7 @@
             <td>{{ $role->name }}</td>
             <td>
                 <a href="{{ route('roles.edit', $role) }}">Edit</a> |
-                <a href="#" onclick="event.preventDefault();document.getElementById('deleteForm').submit();">Delete</a>
-                <form id="deleteForm" action="{{ route('roles.destroy', $role) }}" method="POST" style="display: none;">
-                    @csrf
-                    @method('DELETE')
-                </form>
+                <a href="{{ route('roles.destroy', $role) }}" class="delete">Delete</a>
             </td>
         </tr>
         @empty
@@ -31,3 +27,18 @@
         @endforelse
     </tbody>
 </table>
+
+
+<form id="deleteForm" action="/" method="POST" style="display: none;">
+    @csrf
+    @method('DELETE')
+</form>
+
+
+<script src="{{ asset('js/app.js') }}"></script>
+<script>
+    $('.delete').click(function (e) {
+        e.preventDefault();
+        $('#deleteForm').attr('action', $(this).attr('href')).submit();
+    });
+</script>
