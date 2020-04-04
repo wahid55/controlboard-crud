@@ -40,6 +40,7 @@
                     <li class="nav-item"><a href="{{ route('programs.index') }}" class="nav-link">{{ __('Programs') }}</a></li>
                     <li class="nav-item"><a href="{{ route('courses.index') }}" class="nav-link">{{ __('Courses') }}</a></li>
                     <li class="nav-item"><a href="{{ route('students.index') }}" class="nav-link">{{ __('Students') }}</a></li>
+                    <li class="nav-item"><a href="{{ route('faculties.index') }}" class="nav-link">{{ __('Faculties') }}</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
