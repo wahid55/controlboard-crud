@@ -15,4 +15,8 @@ class Program extends Model
     public function courses() {
         return $this->belongsToMany('App\Course')->withTimestamps();
     }
+
+    public function students() {
+        return $this->hasMany('App\Student');
+    }
 }

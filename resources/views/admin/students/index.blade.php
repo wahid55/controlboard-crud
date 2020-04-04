@@ -22,7 +22,7 @@
         <tr>
             <td>{{ $student->id }}</td>
             <td>{{ $student->name }}</td>
-            <td>-</td>
+            <td>{{ $student->program->name }}</td>
             <td>
                 <a href="{{ route('students.show', $student) }}">Show</a> |
                 <a href="{{ route('students.edit', $student) }}">Edit</a> |
