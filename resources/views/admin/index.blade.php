@@ -34,11 +34,11 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item"><a href="{{ route('home') }}" class="nav-link">{{ __('Dashboard') }}</a></li>
-                    <li class="nav-item"><a href="{{ route('users.index') }}" class="nav-link">{{ __('Users') }}</a></li>
                     <li class="nav-item"><a href="{{ route('roles.index') }}" class="nav-link">{{ __('Roles') }}</a></li>
-                    <li class="nav-item"><a href="{{ route('courses.index') }}" class="nav-link">{{ __('Courses') }}</a></li>
+                    <li class="nav-item"><a href="{{ route('users.index') }}" class="nav-link">{{ __('Users') }}</a></li>
                     <li class="nav-item"><a href="{{ route('departments.index') }}" class="nav-link">{{ __('Departments') }}</a></li>
                     <li class="nav-item"><a href="{{ route('programs.index') }}" class="nav-link">{{ __('Programs') }}</a></li>
+                    <li class="nav-item"><a href="{{ route('courses.index') }}" class="nav-link">{{ __('Courses') }}</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

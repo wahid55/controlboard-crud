@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Course;
-use App\Department;
+use App\Program;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -27,8 +27,8 @@ class AdminCoursesController extends Controller
      */
     public function create()
     {
-        $departments = Department::orderBy('name', 'ASC')->get();
-        return view('admin.courses.create', compact('departments'));
+        $programs = Program::orderBy('name', 'ASC')->get();
+        return view('admin.courses.create', compact('programs'));
     }
 
     /**
@@ -43,7 +43,7 @@ class AdminCoursesController extends Controller
             'code'      => 'required|string|max:15|unique:courses',
             'title'     => 'required|string|max:255',
             'credit'    => 'required|numeric|between:0,4.00',
-            'departments' => 'required',
+            'programs' => 'required',
         ]);
 
         $course = new Course();
@@ -51,7 +51,12 @@ class AdminCoursesController extends Controller
         $course->title = $request->title;
         $course->credit = $request->credit;
         $course->save();
-        $course->departments()->sync($request->departments);
+
+        if(in_array('0', $request->programs)) {
+            $course->programs()->detach();
+        } else {
+            $course->programs()->sync($request->programs);
+        }
 
         return redirect()->route('courses.index')->with('status', 'success')->with('message', 'Course has created successfully');
     }
@@ -76,8 +81,8 @@ class AdminCoursesController extends Controller
     public function edit($id)
     {
         $course = Course::findOrFail($id);
-        $departments = Department::orderBy('name', 'ASC')->get();
-        return view('admin.courses.edit', compact('course', 'departments'));
+        $programs = Program::orderBy('name', 'ASC')->get();
+        return view('admin.courses.edit', compact('course', 'programs'));
     }
 
     /**
@@ -100,17 +105,17 @@ class AdminCoursesController extends Controller
             ],
             'title'     => 'nullable|string|max:255',
             'credit'    => 'nullable|numeric|between:0,4.00',
-            'departments' => 'required'
+            'programs' => 'required'
         ]);
 
         $course->code   = $request->code;
         $course->title  = $request->title;
         $course->credit = $request->credit;
 
-        if(in_array('0', $request->departments)) {
-            $course->departments()->detach();
+        if(in_array('0', $request->programs)) {
+            $course->programs()->detach();
         } else {
-            $course->departments()->sync($request->departments);
+            $course->programs()->sync($request->programs);
         }
 
         $course->update();

@@ -14,7 +14,7 @@
             <th>Code</th>
             <th>Title</th>
             <th>Credit</th>
-            <th>Departments</th>
+            <th>Programs</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -24,7 +24,7 @@
             <td>{{ $course->code }}</td>
             <td>{{ $course->title }}</td>
             <td>{{ $course->credit }}</td>
-            <td>{{ count($course->departments) }}</td>
+            <td>{{ count($course->programs) }}</td>
             <td>
                 <a href="{{ route('courses.edit', $course) }}">Edit</a> |
                 <a href="{{ route('courses.destroy', $course) }}" class="delete">Delete</a>

@@ -28,10 +28,10 @@
         <input class="form-control" type="text" name="credit">
     </p>
     <p>
-        <label>Departments</label>
-        <select name="departments[]" class="form-control" multiple>
-            @foreach($departments as $department)
-                <option value="{{ $department->id }}">{{ $department->name }}</option>
+        <label>Programs</label>
+        <select name="programs[]" class="form-control" multiple>
+            @foreach($programs as $program)
+                <option value="{{ $program->id }}">{{ $program->name }}</option>
             @endforeach
             <option value="0">None</option>
         </select>

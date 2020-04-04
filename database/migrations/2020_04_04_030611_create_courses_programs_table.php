@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCoursesDepartmentsTable extends Migration
+class CreateCoursesProgramsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateCoursesDepartmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_department', function (Blueprint $table) {
+        Schema::create('course_program', function (Blueprint $table) {
             $table->unsignedBigInteger('course_id');
-            $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('program_id');
             $table->timestamps();
-            $table->primary(['course_id', 'department_id']);
+            $table->primary(['course_id', 'program_id']);
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateCoursesDepartmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_department');
+        Schema::dropIfExists('course_program');
     }
 }
