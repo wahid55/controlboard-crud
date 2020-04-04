@@ -22,7 +22,7 @@
         <tr>
             <td>{{ $faculty->name }}</td>
             <td>{{ $faculty->code }}</td>
-            <td>-</td>
+            <td>{{ $faculty->department->name }}</td>
             <td>
                 <a href="{{ route('faculties.show', $faculty) }}">Show</a> |
                 <a href="{{ route('faculties.edit', $faculty) }}">Edit</a> |
