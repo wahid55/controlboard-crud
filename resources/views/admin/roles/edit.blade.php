@@ -1,7 +1,7 @@
 @extends('admin.index')
 @section('content')
 
-<h4>Edit Role</h4>
+<h4>Update Role</h4>
 
 
 @if ($errors->any())

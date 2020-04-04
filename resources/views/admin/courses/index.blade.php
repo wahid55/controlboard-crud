@@ -1,11 +1,6 @@
 @extends('admin.index')
 @section('content')
 
-
-    @if(Session::has('status'))
-    {{ Session::get('message') }}
-@endif
-
 <p><a href="{{ route('courses.create') }}" class="btn btn-sm btn-primary">Create</a></p>
 
 <table class="table table-sm table-bordered">

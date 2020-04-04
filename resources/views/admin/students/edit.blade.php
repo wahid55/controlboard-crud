@@ -2,7 +2,7 @@
 @section('content')
 
 
-    <h4>Update User</h4>
+    <h4>Update Student</h4>
 
 
 @if ($errors->any())

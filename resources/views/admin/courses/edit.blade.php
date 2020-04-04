@@ -2,7 +2,7 @@
 @section('content')
 
 
-    <h4>Edit Course</h4>
+    <h4>Update Course</h4>
 
 
 @if ($errors->any())

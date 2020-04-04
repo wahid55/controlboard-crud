@@ -1,10 +1,6 @@
 @extends('admin.index')
 @section('content')
 
-@if(Session::has('status'))
-    {{ Session::get('message') }}
-@endif
-
 <p><a href="{{ route('programs.create') }}" class="btn btn-sm btn-primary">Create</a></p>
 
 <table class="table-bordered table table-sm">

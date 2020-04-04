@@ -1,6 +1,6 @@
 @extends('admin.index')
 @section('content')
-<h4>Create User</h4>
+<h4>Create Student</h4>
 
 
 @if ($errors->any())
