@@ -1,10 +1,9 @@
-@if(Session::has('status'))
-    {{ Session::get('message') }}
-@endif
+@extends('admin.index')
+@section('content')
 
-<a href="{{ route('roles.create') }}">Create</a>
+<p><a href="{{ route('roles.create') }}" class="btn btn-primary btn-sm">Create</a></p>
 
-<table>
+<table class="table-sm table table-bordered">
     <thead>
         <tr>
             <th>Name</th>
@@ -24,23 +23,9 @@
         </tr>
         @empty
             <tr>
-                <td colspan="2">No Roles</td>
+                <td colspan="3">No Roles</td>
             </tr>
         @endforelse
     </tbody>
 </table>
-
-
-<form id="deleteForm" action="/" method="POST" style="display: none;">
-    @csrf
-    @method('DELETE')
-</form>
-
-
-<script src="{{ asset('js/app.js') }}"></script>
-<script>
-    $('.delete').click(function (e) {
-        e.preventDefault();
-        $('#deleteForm').attr('action', $(this).attr('href')).submit();
-    });
-</script>
+@endsection

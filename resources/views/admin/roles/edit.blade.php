@@ -1,3 +1,6 @@
+@extends('admin.index')
+@section('content')
+
 <h4>Edit Role</h4>
 
 
@@ -13,7 +16,10 @@
     @csrf
     @method('PATCH')
 
-    <label>Name</label>
-    <input type="text" name="name" value="{{ $role->name }}">
-    <button type="submit">Update</button>
+    <p>
+        <label>Name</label>
+        <input class="form-control" type="text" name="name" value="{{ $role->name }}">
+    </p>
+    <button type="submit" class="btn btn-primary btn-sm">Update</button>
 </form>
+@endsection

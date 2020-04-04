@@ -1,10 +1,13 @@
+@extends('admin.index')
+@section('content')
+
 @if(Session::has('status'))
     {{ Session::get('message') }}
 @endif
 
-<a href="{{ route('programs.create') }}">Create</a>
+<p><a href="{{ route('programs.create') }}" class="btn btn-sm btn-primary">Create</a></p>
 
-<table>
+<table class="table-bordered table table-sm">
     <thead>
         <tr>
             <th>Name</th>
@@ -18,6 +21,7 @@
             <td>{{ $program->name }}</td>
             <td>{{ $program->department->name ?? '' }}</td>
             <td>
+                <a href="{{ route('programs.show', $program ) }}">Show</a> |
                 <a href="{{ route('programs.edit', $program ) }}">Edit</a> |
                 <a href="{{ route('programs.destroy', $program ) }}" class="delete">Delete</a>
             </td>
@@ -29,18 +33,4 @@
         @endforelse
     </tbody>
 </table>
-
-
-<form id="deleteForm" action="/" method="POST" style="display: none;">
-    @csrf
-    @method('DELETE')
-</form>
-
-
-<script src="{{ asset('js/app.js') }}"></script>
-<script>
-    $('.delete').click(function (e) {
-        e.preventDefault();
-        $('#deleteForm').attr('action', $(this).attr('href')).submit();
-    });
-</script>
+@endsection

@@ -1,3 +1,6 @@
+@extends('admin.index')
+@section('content')
+
 <h4>Create Department</h4>
 
 
@@ -13,11 +16,12 @@
     @csrf
     <p>
         <label>Department Name</label>
-        <input type="text" name="name">
+        <input class="form-control" type="text" name="name">
     </p>
     <p>
         <label>Established At</label>
-        <input type="date" name="established_at">
+        <input class="form-control" type="date" name="established_at">
     </p>
-    <button type="submit">Create</button>
+    <button type="submit" class="btn btn-primary btn-sm">Create</button>
 </form>
+@endsection

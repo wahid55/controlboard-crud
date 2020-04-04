@@ -1,3 +1,6 @@
+@extends('admin.index')
+@section('content')
+
 <h4>Create Role</h4>
 
 
@@ -11,7 +14,11 @@
 
 <form action="{{ route('roles.store') }}" method="POST" autocomplete="off">
     @csrf
-    <label>Name</label>
-    <input type="text" name="name">
-    <button type="submit">Create</button>
+    <p>
+        <label>Name</label>
+        <input class="form-control" type="text" name="name">
+    </p>
+    <button type="submit" class="btn btn-primary btn-sm">Create</button>
 </form>
+
+    @endsection

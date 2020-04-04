@@ -52,7 +52,12 @@ class AdminUsersController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
-        $user->roles()->sync($request->roles);
+
+        if(in_array('0', $request->roles)) {
+            $user->roles()->detach();
+        } else {
+            $user->roles()->sync($request->roles);
+        }
 
         return redirect()->route('users.index')->with('status', 'success')->with('message', 'User has created successfully');
     }
@@ -103,7 +108,7 @@ class AdminUsersController extends Controller
                 Rule::unique('users')->ignore($user->id)
             ],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
-            'roles' => ['required'],
+            'roles' => 'required',
         ]);
 
         if($request->has('name')) {

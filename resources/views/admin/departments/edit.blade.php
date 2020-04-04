@@ -1,3 +1,5 @@
+@extends('admin.index')
+@section('content')
 <h4>Edit Department</h4>
 
 
@@ -15,11 +17,12 @@
 
     <p>
         <label>Department Name</label>
-        <input type="text" name="name" value="{{ $department->name }}">
+        <input class="form-control" type="text" name="name" value="{{ $department->name }}">
     </p>
     <p>
         <label>Established At</label>
-        <input type="date" name="established_at" value="{{ $department->established_at }}">
+        <input class="form-control" type="date" name="established_at" value="{{ $department->established_at }}">
     </p>
-    <button type="submit">Update</button>
+    <button type="submit" class="btn btn-sm btn-primary">Update</button>
 </form>
+@endsection

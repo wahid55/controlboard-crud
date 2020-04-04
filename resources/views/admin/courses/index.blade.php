@@ -1,16 +1,21 @@
-@if(Session::has('status'))
+@extends('admin.index')
+@section('content')
+
+
+    @if(Session::has('status'))
     {{ Session::get('message') }}
 @endif
 
-<a href="{{ route('courses.create') }}">Create</a>
+<p><a href="{{ route('courses.create') }}" class="btn btn-sm btn-primary">Create</a></p>
 
-<table>
+<table class="table table-sm table-bordered">
     <thead>
         <tr>
             <th>Code</th>
             <th>Title</th>
             <th>Credit</th>
             <th>Departments</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -32,18 +37,4 @@
         @endforelse
     </tbody>
 </table>
-
-
-<form id="deleteForm" action="/" method="POST" style="display: none;">
-    @csrf
-    @method('DELETE')
-</form>
-
-
-<script src="{{ asset('js/app.js') }}"></script>
-<script>
-    $('.delete').click(function (e) {
-        e.preventDefault();
-        $('#deleteForm').attr('action', $(this).attr('href')).submit();
-    });
-</script>
+@endsection

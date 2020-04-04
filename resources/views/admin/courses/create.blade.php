@@ -1,4 +1,8 @@
-<h4>Create Course</h4>
+@extends('admin.index')
+@section('content')
+
+
+    <h4>Create Course</h4>
 
 
 @if ($errors->any())
@@ -13,24 +17,25 @@
     @csrf
     <p>
         <label>Course Code</label>
-        <input type="text" name="code">
+        <input class="form-control" type="text" name="code">
     </p>
     <p>
         <label>Title</label>
-        <input type="text" name="title">
+        <input class="form-control" type="text" name="title">
     </p>
     <p>
         <label>Credit</label>
-        <input type="text" name="credit">
+        <input class="form-control" type="text" name="credit">
     </p>
     <p>
         <label>Departments</label>
-        <select name="departments[]" multiple>
+        <select name="departments[]" class="form-control" multiple>
             @foreach($departments as $department)
                 <option value="{{ $department->id }}">{{ $department->name }}</option>
             @endforeach
             <option value="0">None</option>
         </select>
     </p>
-    <button type="submit">Create</button>
+    <button type="submit" class="btn btn-sm btn-primary">Create</button>
 </form>
+@endsection

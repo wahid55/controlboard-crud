@@ -34,21 +34,11 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item"><a href="{{ route('home') }}" class="nav-link">{{ __('Dashboard') }}</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{ __('Roles') }} <span class="caret"></span></a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">{{ __('All Roles') }}</a>
-                            <a class="dropdown-item" href="#">{{ __('Add New') }}</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{ __('Users') }} <span class="caret"></span></a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">{{ __('All Users') }}</a>
-                            <a class="dropdown-item" href="#">{{ __('Add New') }}</a>
-                            <a class="dropdown-item" href="#">{{ __('Profile') }}</a>
-                        </div>
-                    </li>
+                    <li class="nav-item"><a href="{{ route('users.index') }}" class="nav-link">{{ __('Users') }}</a></li>
+                    <li class="nav-item"><a href="{{ route('roles.index') }}" class="nav-link">{{ __('Roles') }}</a></li>
+                    <li class="nav-item"><a href="{{ route('courses.index') }}" class="nav-link">{{ __('Courses') }}</a></li>
+                    <li class="nav-item"><a href="{{ route('departments.index') }}" class="nav-link">{{ __('Departments') }}</a></li>
+                    <li class="nav-item"><a href="{{ route('programs.index') }}" class="nav-link">{{ __('Programs') }}</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -76,14 +66,33 @@
     </nav>
 
     <main class="py-4">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-md-12">
-
+                    @if(Session::has('status'))
+                        <div class="alert alert-success">{{ Session::get('message') }}</div>
+                    @endif
+                    @yield('content')
                 </div>
             </div>
         </div>
     </main>
 </div>
+
+
+<form id="deleteForm" action="/" method="POST" style="display: none;">
+    @csrf
+    @method('DELETE')
+</form>
+
+
+<script>
+    window.addEventListener('load', function() {
+        $('.delete').click(function (e) {
+            e.preventDefault();
+            $('#deleteForm').attr('action', $(this).attr('href')).submit();
+        });
+    });
+</script>
 </body>
 </html>
